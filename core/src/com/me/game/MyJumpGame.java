@@ -3,6 +3,7 @@ package com.me.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.me.game.jump.ScreenFactory;
+import com.me.game.jump.SpriteFactory;
 
 /**
  * Created by Black on 2014/8/6.
@@ -14,7 +15,9 @@ public class MyJumpGame extends Game {
     @Override
     public void create() {
 
-        mCurScreen = ScreenFactory.createScreen(ScreenFactory.SCREEN_MENU);
+        SpriteFactory.init();
+
+        changeScreen(ScreenFactory.SCREEN_GAME);
     }
 
     @Override
@@ -35,5 +38,20 @@ public class MyJumpGame extends Game {
             mCurScreen.dispose();
             mCurScreen = null;
         }
+
+        SpriteFactory.onDestroy();
+    }
+
+    /***
+     * 切换界面
+     * @param screenIndex
+     */
+    private void changeScreen(byte screenIndex) {
+        if(mCurScreen != null) {
+            mCurScreen.dispose();
+            mCurScreen = null;
+        }
+        mCurScreen = ScreenFactory.createScreen(screenIndex);
+        setScreen(mCurScreen);
     }
 }

@@ -1,0 +1,60 @@
+role.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+r0
+  rotate: false
+  xy: 140, 2
+  size: 68, 80
+  orig: 140, 140
+  offset: 33, 36
+  index: -1
+r1
+  rotate: false
+  xy: 210, 2
+  size: 68, 80
+  orig: 140, 140
+  offset: 32, 36
+  index: -1
+r2
+  rotate: true
+  xy: 378, 34
+  size: 66, 80
+  orig: 140, 140
+  offset: 32, 36
+  index: -1
+r3
+  rotate: false
+  xy: 72, 2
+  size: 66, 84
+  orig: 140, 140
+  offset: 34, 39
+  index: -1
+r4
+  rotate: false
+  xy: 2, 2
+  size: 68, 94
+  orig: 140, 140
+  offset: 41, 38
+  index: -1
+r5
+  rotate: true
+  xy: 280, 2
+  size: 54, 94
+  orig: 140, 140
+  offset: 55, 38
+  index: -1
+r6
+  rotate: true
+  xy: 376, 2
+  size: 30, 100
+  orig: 140, 140
+  offset: 89, 39
+  index: -1
+r7
+  rotate: true
+  xy: 280, 58
+  size: 44, 96
+  orig: 140, 140
+  offset: 93, 39
+  index: -1
