@@ -1,6 +1,7 @@
 package com.me.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.me.game.jump.ScreenFactory;
 import com.me.game.jump.SpriteFactory;
@@ -10,10 +11,14 @@ import com.me.game.jump.SpriteFactory;
  */
 public class MyJumpGame extends Game {
 
+    public static float gCurDelayTime = 0f;
+
     private Screen mCurScreen = null;
 
     @Override
     public void create() {
+
+        gCurDelayTime = 0f;
 
         SpriteFactory.init();
 
@@ -23,6 +28,8 @@ public class MyJumpGame extends Game {
     @Override
     public void render() {
         super.render();
+
+        gCurDelayTime += Gdx.graphics.getDeltaTime();
     }
 
     @Override

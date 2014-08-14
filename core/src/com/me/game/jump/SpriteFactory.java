@@ -1,12 +1,24 @@
 package com.me.game.jump;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * Created by user on 2014/8/12.
  */
 public class SpriteFactory {
+
+    private static String[] ROLE = {
+            "r0",
+            "r1",
+            "r2",
+            "r3",
+            "r4",
+            "r5",
+            "r6",
+    };
 
     private static TextureAtlas mRoleTextureAtlas = null;
 
@@ -25,5 +37,13 @@ public class SpriteFactory {
             mRoleTextureAtlas.dispose();
             mRoleTextureAtlas = null;
         }
+    }
+
+    public static Array<Sprite> createRole() {
+        Array<Sprite> tmpFrame = null;
+        if(mRoleTextureAtlas != null) {
+            tmpFrame = mRoleTextureAtlas.createSprites();
+        }
+        return tmpFrame;
     }
 }

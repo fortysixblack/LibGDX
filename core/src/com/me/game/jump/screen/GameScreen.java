@@ -33,6 +33,7 @@ public class GameScreen implements Screen {
         mStage = new Stage();
 
         mPlayer = new Player();
+        mStage.addActor(mPlayer);
     }
 
     @Override
