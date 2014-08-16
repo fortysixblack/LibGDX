@@ -3,7 +3,11 @@ package com.me.game.jump.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.ScalingViewport;
+import com.me.game.jump.role.GameBG;
 import com.me.game.jump.role.Player;
 
 /**
@@ -13,11 +17,17 @@ public class GameScreen implements Screen {
 
     private Stage mStage = null;
     private Player mPlayer = null;
+    private GameBG mBG = null;
+    private DrawMap mBGPen = null;
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClearColor(1, 1, 1, 1);
+
+        if(mBG != null) {
+            mBG.loop();
+        }
 
         mStage.act(delta);
         mStage.draw();
@@ -30,7 +40,11 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-        mStage = new Stage();
+        mStage = new Stage(new ScalingViewport(Scaling.fill, 800, 480));
+
+        mBGPen = new DrawMap();
+        mBG = new GameBG(mBGPen);
+        mStage.addActor(mBG.getCurBG());
 
         mPlayer = new Player();
         mStage.addActor(mPlayer);
@@ -54,6 +68,16 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
 
+        if(mBGPen != null) {
+            mBGPen.dispose();
+            mBGPen = null;
+        }
+
+        if(mBG != null) {
+            mBG.dispose();
+            mBG = null;
+        }
+
         if(mPlayer != null) {
             mPlayer = null;
         }
@@ -61,6 +85,24 @@ public class GameScreen implements Screen {
         if(mStage != null) {
             mStage.dispose();
             mStage = null;
+        }
+    }
+
+    /***
+     * 画背景
+     */
+    public class DrawMap implements GameBG.DrawHandle {
+
+        public DrawMap() {
+        }
+
+        @Override
+        public void draw(Pixmap pen) {
+            pen.fillRectangle(0, 350, 800, 20);
+        }
+
+        /*** 销毁 */
+        public void dispose() {
         }
     }
 }

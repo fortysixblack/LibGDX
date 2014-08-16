@@ -28,8 +28,11 @@ public class MyJumpGame extends Game {
     @Override
     public void render() {
         super.render();
-
         gCurDelayTime += Gdx.graphics.getDeltaTime();
+
+        if(mCurScreen != null) {
+            mCurScreen.render(Gdx.graphics.getDeltaTime());
+        }
     }
 
     @Override

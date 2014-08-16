@@ -30,6 +30,18 @@ public class SpriteFactory {
     }
 
     /***
+     * 创建角色帧表
+     * @return
+     */
+    public static Array<Sprite> createRole() {
+        Array<Sprite> tmpFrame = null;
+        if(mRoleTextureAtlas != null) {
+            tmpFrame = mRoleTextureAtlas.createSprites();
+        }
+        return tmpFrame;
+    }
+
+    /***
      * 清理资源
      */
     public static void onDestroy() {
@@ -39,11 +51,4 @@ public class SpriteFactory {
         }
     }
 
-    public static Array<Sprite> createRole() {
-        Array<Sprite> tmpFrame = null;
-        if(mRoleTextureAtlas != null) {
-            tmpFrame = mRoleTextureAtlas.createSprites();
-        }
-        return tmpFrame;
-    }
 }
