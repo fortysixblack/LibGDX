@@ -17,7 +17,6 @@ public class GameScreen implements Screen {
 
     private Stage mStage = null;
     private Player mPlayer = null;
-    private GameBG mBG = null;
     private DrawMap mBGPen = null;
 
     @Override
@@ -25,9 +24,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClearColor(1, 1, 1, 1);
 
-        if(mBG != null) {
-            mBG.loop();
-        }
+        GameBG.onLoop();
 
         mStage.act(delta);
         mStage.draw();
@@ -43,8 +40,8 @@ public class GameScreen implements Screen {
         mStage = new Stage(new ScalingViewport(Scaling.fill, 800, 480));
 
         mBGPen = new DrawMap();
-        mBG = new GameBG(mBGPen);
-        mStage.addActor(mBG.getCurBG());
+        GameBG.onInit(mBGPen);
+        mStage.addActor(GameBG.getStageHandle());
 
         mPlayer = new Player();
         mStage.addActor(mPlayer);
@@ -73,10 +70,7 @@ public class GameScreen implements Screen {
             mBGPen = null;
         }
 
-        if(mBG != null) {
-            mBG.dispose();
-            mBG = null;
-        }
+        GameBG.onDestroy();
 
         if(mPlayer != null) {
             mPlayer = null;

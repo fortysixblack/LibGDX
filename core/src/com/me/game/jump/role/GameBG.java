@@ -15,7 +15,10 @@ public class GameBG {
     private Image mImage = null;
     private DrawHandle mDrawHandle = null;
 
-    public GameBG(DrawHandle pen) {
+    private static GameBG instance = null;
+
+    /*** 构造 */
+    private GameBG(DrawHandle pen) {
         mBG = new Texture(800, 480, Pixmap.Format.RGBA8888);
 
         mPix = new Pixmap(800, 480, Pixmap.Format.RGBA8888);
@@ -26,6 +29,7 @@ public class GameBG {
         mDrawHandle = pen;
     }
 
+    /*** 获取舞台需要的句柄 */
     public Image getCurBG() {
         return mImage;
     }
@@ -57,6 +61,46 @@ public class GameBG {
         if(mBG != null) {
             mBG.dispose();
             mBG = null;
+        }
+    }
+
+    /***
+     * 创建一个地图
+     * @param pen
+     */
+    public static void onInit(DrawHandle pen) {
+        if(instance == null) {
+            instance = new GameBG(pen);
+        }
+    }
+
+    /***
+     * 地图添加到舞台的句柄
+     * @return
+     */
+    public static Image getStageHandle() {
+        if(instance != null) {
+            return instance.getCurBG();
+        }
+        return null;
+    }
+
+    /***
+     * 地图刷新循环
+     */
+    public static void onLoop() {
+        if(instance != null) {
+            instance.loop();
+        }
+    }
+
+    /***
+     * 地图模块销毁
+     */
+    public static void onDestroy() {
+        if(instance != null) {
+            instance.dispose();
+            instance = null;
         }
     }
 
